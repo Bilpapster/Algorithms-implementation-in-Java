@@ -1,13 +1,17 @@
+package Gale_Shapley_algorithm;
+
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Sender {
+    private final int serialNumber;
     private HashMap<Integer, Integer> preferences = new HashMap<>();
     private int currentPreferenceIndex = 1;
     private int slotsAvailable = 1;
     private int connectedReceiverSerialNumber = 0;
 
-    public Sender(String encodedPreferences) {
+    public Sender(int serialNumber, String encodedPreferences) {
+        this.serialNumber = serialNumber;
         int preferenceOrderIndex = 1;
         StringTokenizer tokenizer = new StringTokenizer(encodedPreferences, " ");
 
@@ -34,17 +38,12 @@ public class Sender {
         connectedReceiverSerialNumber = 0;
     }
 
+    public int getSerialNumber() {
+        return serialNumber;
+    }
 
     @Override
     public String toString() {
-        StringBuilder stringToReturn = new StringBuilder("[sender]\n");
-        for (int preference : preferences.keySet()) {
-            stringToReturn.append("Preference #");
-            stringToReturn.append(preference);
-            stringToReturn.append(": ");
-            stringToReturn.append(preferences.get(preference));
-            stringToReturn.append("\n");
-        }
-        return stringToReturn.toString();
+        return "[" + this.serialNumber + "] - [" + this.connectedReceiverSerialNumber + "]\n";
     }
 }

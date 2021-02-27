@@ -1,3 +1,5 @@
+package Gale_Shapley_algorithm;
+
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
@@ -20,6 +22,10 @@ public class Receiver {
         }
     }
 
+    public int getSerialNumber() {
+        return serialNumber;
+    }
+
     public boolean acceptsProposalFromSender(int senderSerialNumber) {
         if (isFree) {
             connectedSenderSerialNumber = senderSerialNumber;
@@ -37,20 +43,8 @@ public class Receiver {
     }
 
     public int getRejectedSenderSerialNumber() {
-        return rejectedSenderSerialNumber;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder stringToReturn = new StringBuilder("[receiver]\n");
-        for (int preference : preferences.keySet()) {
-//            stringToReturn.append("Hospital number #" + preference + ": " + preferences.get(preference) + "\n");
-            stringToReturn.append("Hospital number #");
-            stringToReturn.append(preference);
-            stringToReturn.append(": ");
-            stringToReturn.append(preferences.get(preference));
-            stringToReturn.append("\n");
-        }
-        return stringToReturn.toString();
+        int defensiveCopy = rejectedSenderSerialNumber;
+        rejectedSenderSerialNumber = 0;
+        return defensiveCopy;
     }
 }
