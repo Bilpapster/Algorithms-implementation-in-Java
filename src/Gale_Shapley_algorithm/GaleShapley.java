@@ -23,7 +23,7 @@ public class GaleShapley {
                 Receiver preferredReceiver = receivers.get(preferredReceiverSerialNumber);
 
                 if (preferredReceiver.acceptsProposalFromSender(sender.getSerialNumber())) {
-                    FlexiblePrinter.print("Gale_Shapley_algorithm.Receiver number #" + preferredReceiver.getSerialNumber() + " has accepted");
+                    FlexiblePrinter.print("Receiver number #" + preferredReceiver.getSerialNumber() + " has accepted");
                     sender.connectWithReceiver(preferredReceiverSerialNumber);
                     stillAlive.remove(sender);
                     int rejectedSenderSerialNumber = preferredReceiver.getRejectedSenderSerialNumber();
@@ -34,17 +34,20 @@ public class GaleShapley {
                         FlexiblePrinter.print("No second thought at all, he was free!");
                     }
                 } else {
-                    FlexiblePrinter.print("Gale_Shapley_algorithm.Receiver number #" + preferredReceiver.getSerialNumber() + " has rejected the proposal");
+                    FlexiblePrinter.print("Receiver number #" + preferredReceiver.getSerialNumber() + " has rejected the proposal");
                 }
                 FlexiblePrinter.print("");
             }
             copy.clear();
         }
 
-        System.out.println("Final matching [sender] - [receiver]");
+        System.out.println("\nFinal matching [sender] - [receiver]");
         for (Sender sender : senders.values()) {
             System.out.println(sender);
         }
+
+        System.out.println("\n\n**For detailed printing of the algorithmic steps, set DETAILED_PRINTING (inside the " +
+                "FlexiblePrinter.java file) to true.**");
     }
 
     private static void setUpSendersAndReceivers() {
