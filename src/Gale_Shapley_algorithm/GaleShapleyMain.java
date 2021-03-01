@@ -13,7 +13,10 @@ public class GaleShapleyMain {
     private static HashMap<Integer, Receiver> receivers = new HashMap<>();
 
     public static void main(String[] args) {
+
         setUpSendersAndReceivers();
+
+        // TODO: Transform the HashSet structure to LinkedList for enhanced performance
         HashSet<Sender> stillActiveSenders = new HashSet<>(senders.values());
         HashSet<Sender> copy = new HashSet<>();
 
@@ -63,7 +66,8 @@ public class GaleShapleyMain {
      * with the actual object.
      */
     private static void setUpSendersAndReceivers() {
-        ArrayList<String> headedPreferenceMatrices = FileManager.getHeadedPreferenceMatrices("Gale Shapley.txt");
+        ArrayList<String> headedPreferenceMatrices = FileManager.getHeadedPreferenceMatrices(
+                "src/Gale_Shapley_algorithm/Data files/Gale Shapley.txt");
 
         int serialNumber = 1;
         for (String matrixLine : FileManager.getActualDataLines(headedPreferenceMatrices.get(0))) {
